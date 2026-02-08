@@ -3,7 +3,9 @@ import { config, fields, collection } from "@keystatic/core";
 export default config({
   storage: {
     kind: "github",
-    repo: "fijnbesnaard/sfbkosmos", // Assuming username/repo based on prompt context, will need user to confirm or set env var if diff
+    repo:
+      (process.env.NEXT_PUBLIC_KEYSTATIC_REPO as `${string}/${string}`) ||
+      "fijnbesnaard/sfbkosmos",
   },
   collections: {
     ambitions: collection({
