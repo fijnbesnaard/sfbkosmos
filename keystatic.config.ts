@@ -4,11 +4,10 @@ import { config, fields, collection } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "cloud",
-  },
-  cloud: {
-    project:
-      process.env.NEXT_PUBLIC_KEYSTATIC_PROJECT || "fijnbesnaard/sfbkosmos",
+    kind: "github",
+    repo:
+      (process.env.NEXT_PUBLIC_KEYSTATIC_REPO as `${string}/${string}`) ||
+      "fijnbesnaard/sfbkosmos",
   },
   collections: {
     records: collection({
