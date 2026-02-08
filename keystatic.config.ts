@@ -7,7 +7,8 @@ export default config({
     kind: "cloud",
   },
   cloud: {
-    project: "fijnbesnaard/sfbkosmos",
+    project:
+      process.env.NEXT_PUBLIC_KEYSTATIC_PROJECT || "fijnbesnaard/sfbkosmos",
   },
   collections: {
     records: collection({
