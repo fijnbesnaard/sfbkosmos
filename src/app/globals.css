@@ -1,1 +1,198 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Font Families (Reference locally scoped variables) */
+  --font-heading: var(--font-compacta), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+
+  /* Typography Plugin Integration */
+  --typography-heading: var(--font-heading);
+  --typography-body: var(--font-body);
+
+  /* Extend font sizes in theme (map to global variables) */
+  --text-base: var(--text-base);
+  --text-md: var(--text-md);
+  --text-lg: var(--text-lg);
+  --text-xl: var(--text-xl);
+  --text-2xl: var(--text-2xl);
+  --text-3xl: var(--text-3xl);
+  --text-4xl: var(--text-4xl);
+  --text-5xl: var(--text-5xl);
+
+  /* Extend line heights */
+  --leading-tight: var(--leading-tight);
+  --leading-normal: var(--leading-normal);
+  --leading-relaxed: var(--leading-relaxed);
+}
+
+/* Define Global CSS Variables */
+:root {
+  /* Fonts */
+  --font-compacta: "Compacta", sans-serif; /* Fallback if Next.js var fails */
+  --font-inter: "Inter", sans-serif;
+
+  /* Modular Scale (Major Third 1.250) */
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.563rem;
+  --text-xl: 1.953rem;
+  --text-2xl: 2.441rem;
+  --text-3xl: 3.052rem;
+  --text-4xl: 3.815rem;
+  --text-5xl: 4.768rem;
+
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+}
+
+/* Global Typography Defaults */
+html {
+  font-family: var(--font-body);
+  font-size: 16px; /* Base size for web */
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  /* text-transform: uppercase; */
+  text-wrap: balance;
+  line-height: var(--leading-tight);
+}
+
+/* Typography Plugin Customization */
+.prose {
+  --tw-prose-body: var(--font-body);
+  --tw-prose-headings: var(--font-heading);
+  /* Use global max-width to match container */
+  max-width: 100%;
+
+  h1 {
+    font-size: var(--text-4xl);
+  }
+  h2 {
+    font-size: var(--text-3xl);
+  }
+  h3 {
+    font-size: var(--text-2xl);
+  }
+  h4 {
+    font-size: var(--text-xl);
+  }
+  h5 {
+    font-size: var(--text-lg);
+  }
+  h6 {
+    font-size: var(--text-md);
+  }
+
+  /* Remove backticks from inline code (Simplified selector for Paged.js compatibility) */
+  code::before,
+  code::after {
+    content: none !important;
+  }
+
+  /* Shiki code block styles */
+  pre {
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  /* Ensure code blocks have proper spacing */
+  pre code {
+    display: block;
+    padding: 1rem;
+  }
+}
+
+/* Paged.js / Print Rules */
+@media print {
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  /* Reset base size for accurate physical printing */
+  html {
+    font-size: 11pt;
+  }
+
+  /* Golden Rules for Print Readability */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Typography Adjustments */
+  p,
+  li,
+  blockquote {
+    hyphens: auto;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Avoid Page Breaks */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+    color: black !important;
+  }
+
+  /* Prose Overrides with Major Second scale (1.125) - Base 11pt */
+  .prose {
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .prose h1 {
+    font-size: 22.3pt !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.5em !important;
+  }
+  .prose h2 {
+    font-size: 19.8pt !important;
+    line-height: 1.1 !important;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em !important;
+  }
+  .prose h3 {
+    font-size: 17.6pt !important;
+  }
+  .prose h4 {
+    font-size: 15.7pt !important;
+  }
+  .prose h5 {
+    font-size: 14pt !important;
+  }
+  .prose h6 {
+    font-size: 12.4pt !important;
+  }
+
+  img,
+  figure,
+  table {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure links are readable (optional for print context) */
+  a {
+    text-decoration: underline;
+    color: black;
+  }
+}

@@ -1,12 +1,15 @@
 import { config, fields, collection } from "@keystatic/core";
 
 export default config({
-  storage: {
-    kind: "github",
-    repo:
-      (process.env.NEXT_PUBLIC_KEYSTATIC_REPO as `${string}/${string}`) ||
-      "fijnbesnaard/sfbkosmos",
-  },
+  storage:
+    process.env.NODE_ENV === "production"
+      ? {
+          kind: "github",
+          repo:
+            (process.env.NEXT_PUBLIC_KEYSTATIC_REPO as `${string}/${string}`) ||
+            "fijnbesnaard/sfbkosmos",
+        }
+      : { kind: "local" },
   collections: {
     ambitions: collection({
       label: "Ambitions",
