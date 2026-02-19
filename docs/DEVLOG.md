@@ -24,7 +24,12 @@
   - Fixed TypeScript path aliases to point to `src/` directory.
   - Added CSS styling for code blocks with proper spacing and overflow handling.
 
+- [2026-02-19] Custom Color Palette Integration
+  - Created branch `feature/custom-colors-light-dark-mode`.
+  - Added custom color variables to `globals.css` (Tailwind v4 `@theme` configuration).
+  - Defined: light, dark, blue, yellow, orange, pink, red.
+
 ## Next Steps
 
-- [ ] Create content in Keystatic for How To's and Manuals.
-- [ ] Test syntax highlighting with various programming languages.
+- [x] Create content in Keystatic for How To's and Manuals.
+- [x] Test syntax highlighting with various programming languages.
