@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Use class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Font Families (Reference locally scoped variables) */
   --font-heading: var(--font-compacta), sans-serif;
@@ -24,6 +27,15 @@
   --leading-tight: var(--leading-tight);
   --leading-normal: var(--leading-normal);
   --leading-relaxed: var(--leading-relaxed);
+
+  /* Custom Colors */
+  --color-light: #e8e9f3;
+  --color-dark: #17183b;
+  --color-blue: #068d9d;
+  --color-yellow: #cad178;
+  --color-orange: #fbb13c;
+  --color-pink: #ef6f6c;
+  --color-red: #db5a42;
 }
 
 /* Define Global CSS Variables */
