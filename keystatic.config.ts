@@ -1,4 +1,87 @@
+// @ts-ignore
 import { config, fields, collection } from "@keystatic/core";
+// @ts-ignore
+import { block, inline, wrapper } from "@keystatic/core/content-components";
+import React from "react";
+
+/**
+ * Reusable Markdoc field configuration.
+ * We use 'as any' on component definitions to resolve complex TypeScript union type errors
+ * in the editor, while maintaining correct runtime behavior for Keystatic.
+ */
+const markdocField = fields.markdoc({
+  label: "Content",
+  components: {
+    page_break: block({
+      label: "Page Break",
+      schema: {},
+      icon: React.createElement("span", null, "PB"),
+      preview: () =>
+        React.createElement(
+          "div",
+          {
+            style: {
+              borderTop: "1px dashed #ccc",
+              margin: "1em 0",
+              textAlign: "center",
+              fontSize: "12px",
+              color: "#999",
+            },
+          },
+          "Page Break",
+        ),
+    } as any),
+    br: inline({
+      label: "Line Break",
+      schema: {},
+      icon: React.createElement("span", null, "BR"),
+    } as any),
+    image_grid: wrapper({
+      label: "Image Grid",
+      schema: {},
+      icon: React.createElement("span", null, "IG"),
+      preview: (props) =>
+        React.createElement(
+          "div",
+          {
+            style: {
+              border: "1px solid #ccc",
+              padding: "1em",
+              background: "#f9f9f9",
+            },
+          },
+          React.createElement(
+            "div",
+            { style: { fontWeight: "bold", marginBottom: "0.5em" } },
+            "Image Grid",
+          ),
+          props.children,
+        ),
+    } as any),
+    full_width: wrapper({
+      label: "Full Width",
+      schema: {},
+      icon: React.createElement("span", null, "FW"),
+      preview: (props) =>
+        React.createElement(
+          "div",
+          {
+            style: {
+              border: "1px solid #ccc",
+              padding: "1em",
+              background: "#f9f9f9",
+            },
+          },
+          React.createElement(
+            "div",
+            { style: { fontWeight: "bold", marginBottom: "0.5em" } },
+            "Full Width Wrapper",
+          ),
+          props.children,
+        ),
+    } as any),
+  },
+});
 
 export default config({
   storage:
@@ -35,7 +118,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     intentions: collection({
@@ -53,7 +136,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     learning: collection({
@@ -77,7 +160,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     workouts: collection({
@@ -97,7 +180,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     how_tos: collection({
@@ -116,7 +199,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     quotes: collection({
@@ -135,7 +218,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
     manuals: collection({
@@ -154,7 +237,7 @@ export default config({
           label: "Is AI Interaction",
           defaultValue: false,
         }),
-        content: fields.markdoc({ label: "Content" }),
+        content: markdocField,
       },
     }),
   },
