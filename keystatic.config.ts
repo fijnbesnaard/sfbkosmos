@@ -11,6 +11,12 @@ import React from "react";
  */
 const markdocField = fields.markdoc({
   label: "Content",
+  options: {
+    image: {
+      directory: "public/content-images",
+      publicPath: "/content-images/",
+    },
+  },
   components: {
     page_break: block({
       label: "Page Break",
@@ -36,11 +42,23 @@ const markdocField = fields.markdoc({
       schema: {},
       icon: React.createElement("span", null, "BR"),
     } as any),
-    image_grid: wrapper({
+    image_grid: block({
       label: "Image Grid",
-      schema: {},
+      schema: {
+        images: fields.array(
+          fields.image({
+            label: "Image",
+            directory: "public/content-images",
+            publicPath: "/content-images/",
+          }),
+          {
+            label: "Images",
+            itemLabel: (props: any) => props.value?.filename || "Image",
+          },
+        ),
+      },
       icon: React.createElement("span", null, "IG"),
-      preview: (props) =>
+      preview: (props: any) =>
         React.createElement(
           "div",
           {
@@ -55,14 +73,41 @@ const markdocField = fields.markdoc({
             { style: { fontWeight: "bold", marginBottom: "0.5em" } },
             "Image Grid",
           ),
-          props.children,
+          React.createElement(
+            "div",
+            { style: { display: "flex", gap: "10px", flexWrap: "wrap" } },
+            props.fields.images.elements.map((img: any, i: number) =>
+              React.createElement(
+                "div",
+                {
+                  key: i,
+                  style: {
+                    width: "100px",
+                    height: "100px",
+                    background: "#eee",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "10px",
+                  },
+                },
+                "Image",
+              ),
+            ),
+          ),
         ),
     } as any),
-    full_width: wrapper({
+    full_width: block({
       label: "Full Width",
-      schema: {},
+      schema: {
+        image: fields.image({
+          label: "Image",
+          directory: "public/content-images",
+          publicPath: "/content-images/",
+        }),
+      },
       icon: React.createElement("span", null, "FW"),
-      preview: (props) =>
+      preview: (props: any) =>
         React.createElement(
           "div",
           {
@@ -75,9 +120,23 @@ const markdocField = fields.markdoc({
           React.createElement(
             "div",
             { style: { fontWeight: "bold", marginBottom: "0.5em" } },
-            "Full Width Wrapper",
+            "Full Width Image",
           ),
-          props.children,
+          React.createElement(
+            "div",
+            {
+              style: {
+                width: "100%",
+                height: "100px",
+                background: "#eee",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "10px",
+              },
+            },
+            "Image",
+          ),
         ),
     } as any),
   },
