@@ -46,7 +46,7 @@ export default function ThemeSwitcher() {
       onClick={toggleTheme}
       className={`fixed top-4 right-4 z-50 w-9 h-5 rounded-full p-1 transition-colors duration-300 border-2 ${
         theme === "dark" ? "bg-dark border-light" : "bg-light border-dark"
-      }`}
+      } hover:cursor-pointer group`}
       aria-label="Toggle theme"
       title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     >
@@ -57,6 +57,11 @@ export default function ThemeSwitcher() {
           theme === "dark" ? "translate-x-3.25" : "-translate-x-0.5"
         }`}
       />
+
+      {/* Tooltip */}
+      <span className="absolute top-0 right-full mr-3 px-2 py-1 rounded bg-dark dark:bg-light text-light dark:text-dark text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        {theme === "light" ? "Dark Mode" : "Light Mode"}
+      </span>
     </button>
   );
 }

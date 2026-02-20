@@ -214,40 +214,43 @@ export default function PrintPreview({
   };
 
   return (
-    <div className="relative group">
-      <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        <button
-          onClick={handlePreview}
-          className="bg-blue text-white px-4 py-2 rounded-md shadow-lg hover:bg-blue/90 transition-colors font-semibold"
+    <div className="relative">
+      {/*
+          Consolidated Print Button
+          Styled to match Theme/Font switchers
+          Positioned below the control cluster
+      */}
+      <button
+        onClick={handlePreview}
+        className="fixed top-16 rounded-lg right-4 z-50 px-2.5 py-0.5 bg-dark dark:bg-light hover:scale-105 transition-all duration-200 active:scale-95 group hover:cursor-pointer flex items-center justify-center w-full max-w-[36px] h-5"
+        aria-label="Print Document"
+        title="Print Document"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-light dark:text-dark"
         >
-          Preview Print
-        </button>
-      </div>
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+
+        {/* Tooltip */}
+        <span className="absolute right-full mr-3 px-2 py-1 rounded bg-dark dark:bg-light text-light dark:text-dark text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          Print PDF
+        </span>
+      </button>
+
       <div ref={contentRef} className="print-content">
         {children}
-      </div>
-      <div className="mt-8 flex justify-center print:hidden">
-        <button
-          onClick={handlePreview}
-          className="bg-dark text-light px-6 py-3 rounded-lg shadow-xl hover:opacity-90 transition-all font-bold flex items-center gap-2"
-        >
-          <span>Print Document</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
-          </svg>
-        </button>
       </div>
     </div>
   );

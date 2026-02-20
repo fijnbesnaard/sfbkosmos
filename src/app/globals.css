@@ -10,23 +10,23 @@
   --font-body: var(--font-inter), sans-serif;
 
   /* Typography Plugin Integration */
-  --typography-heading: var(--font-heading);
-  --typography-body: var(--font-body);
+  --typography-heading: "Compacta";
+  --typography-body: "Inter";
 
-  /* Extend font sizes in theme (map to global variables) */
-  --text-base: var(--text-base);
-  --text-md: var(--text-md);
-  --text-lg: var(--text-lg);
-  --text-xl: var(--text-xl);
-  --text-2xl: var(--text-2xl);
-  --text-3xl: var(--text-3xl);
-  --text-4xl: var(--text-4xl);
-  --text-5xl: var(--text-5xl);
+  /* Extend font sizes in theme (map to root variables) */
+  --text-base: var(--base-text-base);
+  --text-md: var(--base-text-md);
+  --text-lg: var(--base-text-lg);
+  --text-xl: var(--base-text-xl);
+  --text-2xl: var(--base-text-2xl);
+  --text-3xl: var(--base-text-3xl);
+  --text-4xl: var(--base-text-4xl);
+  --text-5xl: var(--base-text-5xl);
 
   /* Extend line heights */
-  --leading-tight: var(--leading-tight);
-  --leading-normal: var(--leading-normal);
-  --leading-relaxed: var(--leading-relaxed);
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
 
   /* Custom Colors */
   --color-light: #e8e9f3;
@@ -41,7 +41,7 @@
 /* Define Global CSS Variables */
 :root {
   /* Fonts */
-  --font-compacta: "Compacta", sans-serif; /* Fallback if Next.js var fails */
+  --font-compacta: "Compacta", sans-serif;
   --font-inter: "Inter", sans-serif;
 
   /* Functional Colors (Theme) */
@@ -50,19 +50,17 @@
   --border-primary: rgba(23, 24, 59, 0.15); /* Sublte dark border */
 
   /* Modular Scale (Major Third 1.250) */
-  --text-base: 1rem;
-  --text-md: 1.25rem;
-  --text-lg: 1.563rem;
-  --text-xl: 1.953rem;
-  --text-2xl: 2.441rem;
-  --text-3xl: 3.052rem;
-  --text-4xl: 3.815rem;
-  --text-5xl: 4.768rem;
+  --base-text-base: 1rem;
+  --base-text-md: 1.25rem;
+  --base-text-lg: 1.563rem;
+  --base-text-xl: 1.953rem;
+  --base-text-2xl: 2.441rem;
+  --base-text-3xl: 3.052rem;
+  --base-text-4xl: 3.815rem;
+  --base-text-5xl: 4.768rem;
 
-  /* Line Heights */
-  --leading-tight: 1.1;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.625;
+  /* Root Scaling Variables */
+  --base-font-percent: 112.5%; /* 18px starting base */
 }
 
 .dark {
@@ -74,8 +72,21 @@
 /* Global Typography Defaults */
 html {
   font-family: var(--font-body);
-  font-size: 16px; /* Base size for web */
-  line-height: var(--leading-normal);
+  font-size: 16px !important; /* Base: 16px */
+  line-height: 1.5;
+  transition: font-size 0.3s ease;
+}
+
+/* Force all prose variants to respect the root rem size */
+.prose,
+.prose-xl,
+.prose-lg {
+  font-size: 1rem !important; /* This ensures 16px default, 18px when enlarged */
+}
+
+/* Surgical Font Scaling (Switcher v2) */
+html.font-large {
+  font-size: 18px !important; /* Enlarged: 18px */
 }
 
 body {
@@ -84,6 +95,7 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+  font-size: 1rem; /* Force propagation of html size */
 }
 
 h1,
@@ -93,9 +105,10 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  /* text-transform: uppercase; */
+  font-weight: 700; /* Back to Bold for Compacta */
+  text-transform: uppercase;
   text-wrap: balance;
-  line-height: var(--leading-tight);
+  line-height: 1.1;
 }
 
 /* Typography Plugin Customization */
@@ -116,19 +129,7 @@ h6 {
   --tw-prose-pre-bg: var(--color-dark);
   --tw-prose-th-borders: var(--border-primary);
   --tw-prose-td-borders: var(--border-primary);
-
-  /* Use global max-width to match container */
   max-width: 100%;
-}
-
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  font-family: var(--font-heading);
-  color: var(--foreground);
 }
 
 .prose h1 {
@@ -159,6 +160,8 @@ h6 {
 }
 
 .prose table thead th {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
   color: var(--foreground);
   text-align: left;
   padding: 0.75rem 1rem;
@@ -219,6 +222,29 @@ h6 {
 
 .prose pre code {
   white-space: pre-wrap !important;
+}
+
+/* Image Layout Utilities */
+.image-layout-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  margin: 2rem 0 !important;
+}
+.image-layout-grid img {
+  margin: 0 !important;
+  width: 100%;
+  height: auto;
+}
+
+.image-layout-full {
+  margin: 2rem -2rem; /* Break out of p-8 padding */
+  width: calc(100% + 4rem);
+}
+.image-layout-full img {
+  width: 100%;
+  height: auto;
+  margin: 0 !important;
 }
 
 /* Paged.js / Print Rules */
@@ -348,6 +374,8 @@ h6 {
 
   table thead th {
     /* background-color: var(--color-light); Lighter bg for print to save ink */
+    font-family: var(--font-heading);
+    text-transform: uppercase;
     color: var(--color-dark);
     border-bottom: 2pt solid var(--color-dark);
   }
@@ -357,32 +385,13 @@ h6 {
     color: var(--color-dark);
   }
 
+  table td li {
+    text-align: left;
+  }
+
   table tr {
     break-inside: avoid;
     page-break-inside: avoid;
-  }
-
-  /* Image Layout Utilities */
-  .image-layout-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-  .image-layout-grid img {
-    margin: 0 !important;
-    width: 100%;
-    height: auto;
-  }
-
-  .image-layout-full {
-    margin: 2rem -2rem; /* Break out of p-8 padding */
-    width: calc(100% + 4rem);
-  }
-  .image-layout-full img {
-    width: 100%;
-    height: auto;
-    margin: 0 !important;
   }
 
   /* Print-specific code block refinements */

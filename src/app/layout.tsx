@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import FontSizeSwitcher from "@/components/FontSizeSwitcher";
+import Navigation from "@/components/Navigation";
 
 export default function RootLayout({
   children,
@@ -17,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${compacta.variable} ${inter.variable}`}>
       <body className="antialiased bg-light text-dark dark:bg-dark dark:text-light transition-colors duration-300">
+        <Navigation />
         <ThemeSwitcher />
+        <FontSizeSwitcher />
         {children}
       </body>
     </html>

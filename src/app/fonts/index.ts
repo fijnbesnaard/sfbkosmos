@@ -46,3 +46,19 @@ export const inter = localFont({
   ],
   variable: "--font-inter",
 });
+
+export const bricolage = localFont({
+  src: [
+    {
+      path: "./BricolageGrotesque24pt-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./BricolageGrotesque24pt-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-bricolage",
+});
