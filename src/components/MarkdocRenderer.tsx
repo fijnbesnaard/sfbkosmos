@@ -1,6 +1,8 @@
 import Markdoc from "@markdoc/markdoc";
 import React from "react";
 import { Fence } from "./markdoc/fence";
+import { PageBreak } from "./markdoc/PageBreak";
+import { ImageLayout } from "./markdoc/ImageLayout";
 
 interface MarkdocRendererProps {
   content: any; // Keystatic returns an object with a 'node' property
@@ -8,6 +10,8 @@ interface MarkdocRendererProps {
 
 const components = {
   Fence,
+  PageBreak,
+  ImageLayout,
 };
 
 export async function MarkdocRenderer({ content }: MarkdocRendererProps) {
@@ -16,6 +20,27 @@ export async function MarkdocRenderer({ content }: MarkdocRendererProps) {
   const ast = content.node || content;
 
   const transformedContent = Markdoc.transform(ast, {
+    tags: {
+      page_break: {
+        render: "PageBreak",
+      },
+      br: {
+        render: "br",
+        selfClosing: true,
+      },
+      image_grid: {
+        render: "ImageLayout",
+        attributes: {
+          layout: { type: String, default: "grid" },
+        },
+      },
+      full_width: {
+        render: "ImageLayout",
+        attributes: {
+          layout: { type: String, default: "full" },
+        },
+      },
+    },
     nodes: {
       fence: {
         render: "Fence",
