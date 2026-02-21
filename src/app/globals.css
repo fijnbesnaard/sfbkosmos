@@ -309,6 +309,17 @@ h6 {
     page-break-before: always;
   }
 
+  /* Cover Page Rules: Hide Paged.js corners (Headers/Footers) */
+  .cover-page {
+    page: cover;
+  }
+  @page cover {
+    @top-left { content: none; }
+    @top-right { content: none; }
+    @bottom-left { content: none; }
+    @bottom-right { content: none; }
+  }
+
   /* Paged.js Specifics: Headers and Footers */
   @page {
     @top-left {

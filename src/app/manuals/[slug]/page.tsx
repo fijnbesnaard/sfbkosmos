@@ -33,19 +33,18 @@ export default async function ManualPage({ params }: ManualPageProps) {
 
         {/* Cover Page Injection */}
         {manual.enableCoverPage && (
-          <>
-            <CoverPage
-              title={manual.title}
-              coverTitle={manual.coverTitle}
-              coverDate={manual.coverDate}
-              coverPlace={manual.coverPlace}
-              coverName={manual.coverName}
-              coverEmail={manual.coverEmail}
-              coverPhone={manual.coverPhone}
-            />
-            {/* TOC on Cover Page rather than Inline */}
+          <CoverPage
+            title={manual.title}
+            coverTitle={manual.coverTitle}
+            coverDate={manual.coverDate}
+            coverPlace={manual.coverPlace}
+            coverName={manual.coverName}
+            coverEmail={manual.coverEmail}
+            coverPhone={manual.coverPhone}
+          >
+            {/* TOC rendered as a child of CoverPage */}
             {manual.showToc && (
-              <div className="page-break-after mb-24 print:mt-12">
+              <div className="print:-mt-8">
                 <TableOfContents
                   headings={extractHeadings(
                     (await manual.content()).node,
@@ -55,7 +54,7 @@ export default async function ManualPage({ params }: ManualPageProps) {
                 />
               </div>
             )}
-          </>
+          </CoverPage>
         )}
 
         {/* Standard Article Header (Hidden if Cover is active) */}

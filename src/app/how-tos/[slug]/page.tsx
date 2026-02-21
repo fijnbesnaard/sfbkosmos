@@ -33,19 +33,18 @@ export default async function HowToPage({ params }: HowToPageProps) {
 
         {/* Cover Page Injection */}
         {howTo.enableCoverPage && (
-          <>
-            <CoverPage
-              title={howTo.title}
-              coverTitle={howTo.coverTitle}
-              coverDate={howTo.coverDate}
-              coverPlace={howTo.coverPlace}
-              coverName={howTo.coverName}
-              coverEmail={howTo.coverEmail}
-              coverPhone={howTo.coverPhone}
-            />
-            {/* TOC on Cover Page rather than Inline */}
+          <CoverPage
+            title={howTo.title}
+            coverTitle={howTo.coverTitle}
+            coverDate={howTo.coverDate}
+            coverPlace={howTo.coverPlace}
+            coverName={howTo.coverName}
+            coverEmail={howTo.coverEmail}
+            coverPhone={howTo.coverPhone}
+          >
+            {/* TOC rendered as a child of CoverPage */}
             {howTo.showToc && (
-              <div className="page-break-after mb-24 print:mt-12">
+              <div className="print:-mt-8">
                 <TableOfContents
                   headings={extractHeadings(
                     (await howTo.content()).node,
@@ -55,7 +54,7 @@ export default async function HowToPage({ params }: HowToPageProps) {
                 />
               </div>
             )}
-          </>
+          </CoverPage>
         )}
 
         {/* Standard Article Header (Hidden if Cover is active, or styled differently) */}
