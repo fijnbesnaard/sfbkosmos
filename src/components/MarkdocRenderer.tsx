@@ -3,6 +3,7 @@ import React from "react";
 import { Fence } from "./markdoc/fence";
 import { PageBreak } from "./markdoc/PageBreak";
 import { ImageLayout } from "./markdoc/ImageLayout";
+import { generateId } from "@/utils/toc";
 
 interface MarkdocRendererProps {
   content: any; // Keystatic returns an object with a 'node' property
@@ -95,6 +96,41 @@ export async function MarkdocRenderer({ content }: MarkdocRendererProps) {
       },
     },
     nodes: {
+      heading: {
+        render: "heading",
+        attributes: {
+          level: { type: Number },
+          id: { type: String },
+        },
+        transform(node, config) {
+          const attributes = node.transformAttributes(config);
+
+          // Generate ID based on text content
+          const children = node.transformChildren(config);
+          let textContent = "";
+
+          // Simple recursive text extraction for the node's children
+          const extractText = (nodes: any[]) => {
+            for (const child of nodes) {
+              if (typeof child === "string") {
+                textContent += child;
+              } else if (child && child.children) {
+                extractText(child.children);
+              }
+            }
+          };
+
+          extractText(children);
+          const id = generateId(textContent);
+
+          // Return the node as a standard heading element depending on the level (h1, h2, etc)
+          return new Markdoc.Tag(
+            `h${attributes.level}`,
+            { ...attributes, id },
+            children
+          );
+        },
+      },
       fence: {
         render: "Fence",
         attributes: {

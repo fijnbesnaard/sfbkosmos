@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { reader } from "@/lib/keystatic-reader";
 import { MarkdocRenderer } from "@/components/MarkdocRenderer";
 import PrintPreview from "@/components/PrintPreview";
+import { TableOfContents } from "@/components/TableOfContents";
+import { extractHeadings } from "@/utils/toc";
 
 interface ManualPageProps {
   params: Promise<{
@@ -49,6 +51,15 @@ export default async function ManualPage({ params }: ManualPageProps) {
         </header>
 
         <article className="prose dark:prose-invert lg:prose-xl">
+          {manual.showToc && (
+            <TableOfContents
+              headings={extractHeadings(
+                (await manual.content()).node,
+                manual.tocMinLevel || 2,
+                manual.tocMaxLevel || 3
+              )}
+            />
+          )}
           <MarkdocRenderer content={await manual.content()} />
         </article>
       </PrintPreview>

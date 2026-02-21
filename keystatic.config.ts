@@ -250,6 +250,20 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         category: fields.text({ label: "Category" }),
+        showToc: fields.checkbox({
+          label: "Show Table of Contents",
+          defaultValue: false,
+        }),
+        tocMinLevel: fields.integer({
+          label: "TOC Minimum Heading Level",
+          defaultValue: 2,
+          validation: { min: 1, max: 6 },
+        }),
+        tocMaxLevel: fields.integer({
+          label: "TOC Maximum Heading Level",
+          defaultValue: 3,
+          validation: { min: 1, max: 6 },
+        }),
         tags: fields.array(fields.text({ label: "Tag" }), {
           label: "Tags",
           itemLabel: (props) => props.value,
@@ -288,6 +302,20 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         client: fields.text({ label: "Client" }),
+        showToc: fields.checkbox({
+          label: "Show Table of Contents",
+          defaultValue: false,
+        }),
+        tocMinLevel: fields.integer({
+          label: "TOC Minimum Heading Level",
+          defaultValue: 2,
+          validation: { min: 1, max: 6 },
+        }),
+        tocMaxLevel: fields.integer({
+          label: "TOC Maximum Heading Level",
+          defaultValue: 3,
+          validation: { min: 1, max: 6 },
+        }),
         tags: fields.array(fields.text({ label: "Tag" }), {
           label: "Tags",
           itemLabel: (props) => props.value,
