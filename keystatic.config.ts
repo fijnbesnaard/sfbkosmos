@@ -250,6 +250,28 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         category: fields.text({ label: "Category" }),
+        enableCoverPage: fields.checkbox({
+          label: "Enable Cover Page",
+          defaultValue: false,
+        }),
+        coverTitle: fields.text({ label: "Cover Title Override (Optional)" }),
+        coverDate: fields.date({ label: "Cover Date" }),
+        coverPlace: fields.text({
+          label: "Cover Place",
+          defaultValue: "Amsterdam",
+        }),
+        coverName: fields.text({
+          label: "Cover Name",
+          defaultValue: "Niels Hartog",
+        }),
+        coverEmail: fields.text({
+          label: "Cover Email",
+          defaultValue: "niels@fijnbesnaard.nl",
+        }),
+        coverPhone: fields.text({
+          label: "Cover Phone",
+          defaultValue: "06 4546 2919",
+        }),
         showToc: fields.checkbox({
           label: "Show Table of Contents",
           defaultValue: false,
@@ -302,6 +324,28 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         client: fields.text({ label: "Client" }),
+        enableCoverPage: fields.checkbox({
+          label: "Enable Cover Page",
+          defaultValue: false,
+        }),
+        coverTitle: fields.text({ label: "Cover Title Override (Optional)" }),
+        coverDate: fields.date({ label: "Cover Date" }),
+        coverPlace: fields.text({
+          label: "Cover Place",
+          defaultValue: "Amsterdam",
+        }),
+        coverName: fields.text({
+          label: "Cover Name",
+          defaultValue: "Niels Hartog",
+        }),
+        coverEmail: fields.text({
+          label: "Cover Email",
+          defaultValue: "niels@fijnbesnaard.nl",
+        }),
+        coverPhone: fields.text({
+          label: "Cover Phone",
+          defaultValue: "06 4546 2919",
+        }),
         showToc: fields.checkbox({
           label: "Show Table of Contents",
           defaultValue: false,
