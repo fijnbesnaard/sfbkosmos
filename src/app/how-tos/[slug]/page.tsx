@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { reader } from "@/lib/keystatic-reader";
 import { MarkdocRenderer } from "@/components/MarkdocRenderer";
 import PrintPreview from "@/components/PrintPreview";
+import { TableOfContents } from "@/components/TableOfContents";
+import { extractHeadings } from "@/utils/toc";
 
 interface HowToPageProps {
   params: Promise<{
@@ -49,6 +51,15 @@ export default async function HowToPage({ params }: HowToPageProps) {
         </header>
 
         <article className="prose dark:prose-invert lg:prose-xl">
+          {howTo.showToc && (
+            <TableOfContents
+              headings={extractHeadings(
+                (await howTo.content()).node,
+                howTo.tocMinLevel || 2,
+                howTo.tocMaxLevel || 3
+              )}
+            />
+          )}
           <MarkdocRenderer content={await howTo.content()} />
         </article>
       </PrintPreview>
