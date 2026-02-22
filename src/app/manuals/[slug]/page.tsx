@@ -51,6 +51,7 @@ export default async function ManualPage({ params }: ManualPageProps) {
                     manual.tocMinLevel || 2,
                     manual.tocMaxLevel || 3
                   )}
+                  language={manual.language as "nl" | "en"}
                 />
               </div>
             )}
@@ -90,6 +91,7 @@ export default async function ManualPage({ params }: ManualPageProps) {
                 manual.tocMinLevel || 2,
                 manual.tocMaxLevel || 3
               )}
+              language={manual.language as "nl" | "en"}
             />
           )}
           <MarkdocRenderer content={await manual.content()} />

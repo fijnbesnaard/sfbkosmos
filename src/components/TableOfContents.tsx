@@ -5,9 +5,10 @@ import { TocHeading } from "@/utils/toc";
 
 interface TableOfContentsProps {
   headings: TocHeading[];
+  language?: "nl" | "en";
 }
 
-export function TableOfContents({ headings }: TableOfContentsProps) {
+export function TableOfContents({ headings, language = "nl" }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <nav className="toc-nav mb-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
       <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 pb-2 border-b border-gray-200 dark:border-gray-800">
-        Table of Contents
+        {language === "en" ? "Table of Contents" : "Inhoud"}
       </h2>
       <ul className="space-y-2 text-sm">
         {headings.map((heading, index) => {
@@ -53,8 +54,8 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
                 href={`#${heading.id}`}
                 className={`transition-colors duration-200 block border-l-2 pl-3 ${
                   activeId === heading.id
-                    ? "border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
-                    : "border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600"
+                    ? "border-pink text-pink dark:text-pink font-medium"
+                    : "border-transparent text-dark dark:text-light hover:text-pink dark:hover:text-pink hover:border-pink dark:hover:border-pink"
                 }`}
               >
                 {heading.title}
