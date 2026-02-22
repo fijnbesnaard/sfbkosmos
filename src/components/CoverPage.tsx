@@ -33,7 +33,7 @@ export function CoverPage({
   return (
     <div className="cover-page m-0 p-0 page-break-after">
       <div className="pt-8 print:pt-16 mb-8">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-dark dark:text-light uppercase tracking-tight leading-tight max-w-4xl">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl print:text-7xl font-bold mb-8 text-dark dark:text-light uppercase tracking-tight leading-tight max-w-4xl">
           {displayTitle}
         </h1>
 
@@ -52,13 +52,10 @@ export function CoverPage({
           </p>
 
           <div className="space-y-1">
-            <p className="font-medium">{displayName}</p>
-            <p className="text-dark dark:text-light text-sm">
+            <p className="font-medium">{displayName}<br />
               <a href={`mailto:${displayEmail}`} className="hover:underline text-pink print:text-dark">
                 {displayEmail}
-              </a>
-            </p>
-            <p className="text-dark dark:text-light text-sm">
+              </a><br />
               {displayPhone}
             </p>
           </div>
