@@ -40,10 +40,6 @@
 
 /* Define Global CSS Variables */
 :root {
-  /* Fonts */
-  --font-compacta: "Compacta", sans-serif;
-  --font-inter: "Inter", sans-serif;
-
   /* Functional Colors (Theme) */
   --background: var(--color-light);
   --foreground: var(--color-dark);
@@ -271,7 +267,6 @@ h6 {
   li,
   blockquote {
     hyphens: auto;
-    text-align: justify;
     orphans: 3;
     widows: 3;
   }
@@ -309,11 +304,8 @@ h6 {
     page-break-before: always;
   }
 
-  /* Cover Page Rules: Hide Paged.js corners (Headers/Footers) */
-  .cover-page {
-    page: cover;
-  }
-  @page cover {
+  /* Cover Page Rules: Hide Paged.js corners (Headers/Footers) on the very first physical page */
+  @page :first {
     @top-left { content: none; }
     @top-right { content: none; }
     @bottom-left { content: none; }

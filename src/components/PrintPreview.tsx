@@ -60,7 +60,16 @@ export default function PrintPreview({
       try {
         const response = await fetch(link.href);
         const css = await response.text();
-        allStyles += `\n/* From ${link.href} */\n` + sanitizeCSS(css);
+
+        // Rewrite relative URLs (like fonts) to be absolute based on the stylesheet's URL
+        const absoluteCSS = css.replace(/url\((['"]?)(.*?)\1\)/g, (match, quote, url) => {
+          if (url.startsWith('data:') || url.startsWith('http')) return match;
+          try {
+            return `url("${new URL(url, link.href).href}")`;
+          } catch(e) { return match; }
+        });
+
+        allStyles += `\n/* From ${link.href} */\n` + sanitizeCSS(absoluteCSS);
       } catch (e) {
         console.warn(`Could not fetch stylesheet: ${link.href}`, e);
         // Fallback: keep the link but Paged.js might crash if it has bad selectors
