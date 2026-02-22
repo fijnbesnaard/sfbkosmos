@@ -314,11 +314,11 @@ h6 {
 
   /* Paged.js Specifics: Headers and Footers */
   @page {
-    @top-left {
+    @top-right {
       content: element(logo-running);
       vertical-align: middle;
     }
-    @top-right {
+    @bottom-left {
       content: string(doc-title);
       font-family: var(--font-body);
       font-size: 8pt;
