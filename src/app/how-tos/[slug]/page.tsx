@@ -85,14 +85,16 @@ export default async function HowToPage({ params }: HowToPageProps) {
         <article className="prose dark:prose-invert lg:prose-xl">
           {/* TOC behaves normally if no Cover Page exists */}
           {!howTo.enableCoverPage && howTo.showToc && (
-            <TableOfContents
-              headings={extractHeadings(
-                (await howTo.content()).node,
-                howTo.tocMinLevel || 2,
-                howTo.tocMaxLevel || 3
-              )}
-              language={howTo.language as "nl" | "en"}
-            />
+            <div className="page-break-after mb-12">
+              <TableOfContents
+                headings={extractHeadings(
+                  (await howTo.content()).node,
+                  howTo.tocMinLevel || 2,
+                  howTo.tocMaxLevel || 3
+                )}
+                language={howTo.language as "nl" | "en"}
+              />
+            </div>
           )}
           <MarkdocRenderer content={await howTo.content()} />
         </article>

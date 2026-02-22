@@ -85,14 +85,16 @@ export default async function ManualPage({ params }: ManualPageProps) {
         <article className="prose dark:prose-invert lg:prose-xl">
           {/* TOC behaves normally if no Cover Page exists */}
           {!manual.enableCoverPage && manual.showToc && (
-            <TableOfContents
-              headings={extractHeadings(
-                (await manual.content()).node,
-                manual.tocMinLevel || 2,
-                manual.tocMaxLevel || 3
-              )}
-              language={manual.language as "nl" | "en"}
-            />
+            <div className="page-break-after mb-12">
+              <TableOfContents
+                headings={extractHeadings(
+                  (await manual.content()).node,
+                  manual.tocMinLevel || 2,
+                  manual.tocMaxLevel || 3
+                )}
+                language={manual.language as "nl" | "en"}
+              />
+            </div>
           )}
           <MarkdocRenderer content={await manual.content()} />
         </article>
