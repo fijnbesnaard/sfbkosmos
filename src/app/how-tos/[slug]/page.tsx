@@ -51,6 +51,7 @@ export default async function HowToPage({ params }: HowToPageProps) {
                     howTo.tocMinLevel || 2,
                     howTo.tocMaxLevel || 3
                   )}
+                  language={howTo.language as "nl" | "en"}
                 />
               </div>
             )}
@@ -90,6 +91,7 @@ export default async function HowToPage({ params }: HowToPageProps) {
                 howTo.tocMinLevel || 2,
                 howTo.tocMaxLevel || 3
               )}
+              language={howTo.language as "nl" | "en"}
             />
           )}
           <MarkdocRenderer content={await howTo.content()} />

@@ -250,6 +250,15 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         category: fields.text({ label: "Category" }),
+        language: fields.select({
+          label: "Language",
+          description: "Document language (affects Table of Contents title)",
+          options: [
+            { label: "Dutch", value: "nl" },
+            { label: "English", value: "en" },
+          ],
+          defaultValue: "nl",
+        }),
         enableCoverPage: fields.checkbox({
           label: "Enable Cover Page",
           defaultValue: false,
@@ -324,6 +333,15 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         client: fields.text({ label: "Client" }),
+        language: fields.select({
+          label: "Language",
+          description: "Document language (affects Table of Contents title)",
+          options: [
+            { label: "Dutch", value: "nl" },
+            { label: "English", value: "en" },
+          ],
+          defaultValue: "nl",
+        }),
         enableCoverPage: fields.checkbox({
           label: "Enable Cover Page",
           defaultValue: false,
