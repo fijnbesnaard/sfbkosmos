@@ -314,6 +314,7 @@ h6 {
 
   /* Paged.js Specifics: Headers and Footers */
   @page {
+    @top-left { content: none; }
     @top-right {
       content: element(logo-running);
       vertical-align: middle;
