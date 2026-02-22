@@ -31,13 +31,13 @@ export function CoverPage({
   const displayPhone = coverPhone || "06 4546 2919";
 
   return (
-    <div className="cover-page">
-      <div className="pt-16 print:pt-24 mb-16">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-12 text-gray-900 dark:text-gray-100 uppercase tracking-tight leading-tight max-w-4xl">
+    <div className="cover-page m-0 p-0">
+      <div className="pt-8 print:pt-16 mb-8">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-dark dark:text-light uppercase tracking-tight leading-tight max-w-4xl">
           {displayTitle}
         </h1>
 
-        <div className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 font-medium space-y-2">
+        <div className="text-sm text-dark dark:text-light font-medium space-y-1">
           <p>
             {coverDate && (
               <span className="mr-2">
@@ -51,15 +51,15 @@ export function CoverPage({
             <span>{displayPlace}</span>
           </p>
 
-          <div className="pt-6 space-y-1">
-            <p className="font-semibold">{displayName}</p>
-            <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl">
-              <a href={`mailto:${displayEmail}`} className="hover:underline print:text-gray-800">
+          <div className="space-y-1">
+            <p className="font-medium">{displayName}</p>
+            <p className="text-dark dark:text-light text-sm">
+              <a href={`mailto:${displayEmail}`} className="hover:underline print:text-dark">
                 {displayEmail}
               </a>
             </p>
-            <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl">
-              <a href={`tel:${displayPhone.replace(/\s+/g, "")}`} className="hover:underline print:text-gray-800">
+            <p className="text-dark dark:text-light text-sm">
+              <a href={`tel:${displayPhone.replace(/\s+/g, "")}`} className="hover:underline print:text-dark">
                 {displayPhone}
               </a>
             </p>

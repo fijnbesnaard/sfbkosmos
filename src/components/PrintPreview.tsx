@@ -75,9 +75,12 @@ export default function PrintPreview({
     }
 
     // Build the preview HTML
+    // We must pass the Next.js font variables from the parent document's <html> element
+    const fontVariables = document.documentElement.className;
+
     const htmlContent = `
       <!DOCTYPE html>
-      <html lang="en" dir="ltr" class="light" style="color-scheme: light !important;">
+      <html lang="en" dir="ltr" class="light ${fontVariables}" style="color-scheme: light !important;">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -190,16 +193,16 @@ export default function PrintPreview({
           </script>
         </head>
         <body>
-          <div id="loading-overlay">
+          <div id="loading-overlay" data-pagedjs-ignore>
             <div class="spinner"></div>
             <p>Preparing print layout...</p>
             <p style="font-size: 12px; color: #666;">This may take a few seconds.</p>
           </div>
-          <div class="preview-controls no-print">
+          <div class="preview-controls no-print" data-pagedjs-ignore>
             <button class="print-btn" onclick="window.print()">Print PDF</button>
             <button class="print-btn" onclick="window.close()" style="background: #ef4444">Close</button>
           </div>
-          <div class="print-container prose lg:prose-xl mx-auto p-8">
+          <div class="print-container prose lg:prose-xl mx-auto p-8 pt-0">
             <img src="/sfb.png" class="print-logo-running" alt="SFB Logo" />
             ${content}
           </div>
