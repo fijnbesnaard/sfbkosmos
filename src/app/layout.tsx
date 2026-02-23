@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import FontSizeSwitcher from "@/components/FontSizeSwitcher";
 import Navigation from "@/components/Navigation";
+import SearchBar from "@/components/SearchBar";
 
 export default function RootLayout({
   children,
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Navigation />
         <ThemeSwitcher />
         <FontSizeSwitcher />
+        <SearchBar />
         {children}
       </body>
     </html>

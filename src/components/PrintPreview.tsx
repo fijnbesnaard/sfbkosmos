@@ -62,12 +62,17 @@ export default function PrintPreview({
         const css = await response.text();
 
         // Rewrite relative URLs (like fonts) to be absolute based on the stylesheet's URL
-        const absoluteCSS = css.replace(/url\((['"]?)(.*?)\1\)/g, (match, quote, url) => {
-          if (url.startsWith('data:') || url.startsWith('http')) return match;
-          try {
-            return `url("${new URL(url, link.href).href}")`;
-          } catch(e) { return match; }
-        });
+        const absoluteCSS = css.replace(
+          /url\((['"]?)(.*?)\1\)/g,
+          (match, quote, url) => {
+            if (url.startsWith("data:") || url.startsWith("http")) return match;
+            try {
+              return `url("${new URL(url, link.href).href}")`;
+            } catch (e) {
+              return match;
+            }
+          },
+        );
 
         allStyles += `\n/* From ${link.href} */\n` + sanitizeCSS(absoluteCSS);
       } catch (e) {
@@ -126,6 +131,11 @@ export default function PrintPreview({
               background: white !important;
               box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
               margin-bottom: 30px;
+            }
+            .pagedjs_margin-top-right .pagedjs_margin-content {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
             }
             .preview-controls {
                position: fixed;

@@ -25,3 +25,5 @@ Future enhancements and feature ideas for the SFB Kosmos site.
 - **Improved Responsiveness**: Audit all overview pages to ensure they look perfect on ultra-wide and mobile screens.
 - **Deep Linking**: Ensure that headers have anchor links for easy sharing of specific sections.
 - **Ubiquitous Print**: Verify and ensure the Print button is present and fully functional on all collection detail pages (Ambitions, Intentions, Workouts, etc.), not just Manuals and How-Tos.
+
+**NB WHY IS MY LOGO IN .print-logo-running NOT VISIBLE IN THE PRINTED OUTPUT?**
