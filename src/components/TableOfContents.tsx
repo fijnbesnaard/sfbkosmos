@@ -8,7 +8,10 @@ interface TableOfContentsProps {
   language?: "nl" | "en";
 }
 
-export function TableOfContents({ headings, language = "nl" }: TableOfContentsProps) {
+export function TableOfContents({
+  headings,
+  language = "nl",
+}: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export function TableOfContents({ headings, language = "nl" }: TableOfContentsPr
           }
         }
       },
-      { rootMargin: "0px 0px -80% 0px", threshold: 0.1 }
+      { rootMargin: "0px 0px -80% 0px", threshold: 0.1 },
     );
 
     headings.forEach((heading) => {
@@ -42,20 +45,20 @@ export function TableOfContents({ headings, language = "nl" }: TableOfContentsPr
       <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 pb-2 border-b border-gray-200 dark:border-gray-800">
         {language === "en" ? "Table of Contents" : "Inhoud"}
       </h2>
-      <ul className="space-y-2 text-sm list-none print:!list-none print:!p-0 print:!-ml-7">
+      <ul className="space-y-2 text-sm list-none -ml-4 print:list-none! print:pl-1!">
         {headings.map((heading, index) => {
           const depth = heading.level - minHeadingLevel;
           return (
             <li
               key={`${heading.id}-${index}`}
-              style={{ paddingLeft: `${depth * 1 - 1}rem` }}
+              style={{ paddingLeft: `${depth * 1}rem` }}
             >
               <a
                 href={`#${heading.id}`}
-                className={`transition-colors duration-200 block border-l-2 pl-3 print:!no-underline ${
+                className={`font-light text-base print:font-light! print:text-base! transition-colors duration-200 block border-l-2 pl-3 print:no-underline! ${
                   activeId === heading.id
-                    ? "border-pink text-pink dark:text-pink font-medium print:!text-dark print:!border-transparent"
-                    : "border-transparent text-dark dark:text-light hover:text-pink dark:hover:text-pink hover:border-pink dark:hover:border-pink print:!text-dark print:!border-transparent"
+                    ? "border-pink text-pink dark:text-pink font-medium print:text-dark! print:border-transparent!"
+                    : "border-transparent text-dark dark:text-light hover:text-pink dark:hover:text-pink hover:border-pink dark:hover:border-pink print:text-dark! print:border-transparent!"
                 }`}
               >
                 {heading.title}

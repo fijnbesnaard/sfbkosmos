@@ -37,7 +37,7 @@ export function CoverPage({
           {displayTitle}
         </h1>
 
-        <div className="text-sm text-dark dark:text-light font-medium space-y-1">
+        <div className="text-sm text-dark dark:text-light font-normal print:font-light! space-y-1">
           <p>
             {coverDate && (
               <span className="mr-2">
@@ -45,17 +45,24 @@ export function CoverPage({
                   year: "numeric",
                   month: "long",
                   day: "numeric",
-                })},
+                })}
+                ,
               </span>
             )}
             <span>{displayPlace}</span>
           </p>
 
           <div className="space-y-1">
-            <p className="font-medium">{displayName}<br />
-              <a href={`mailto:${displayEmail}`} className="hover:underline text-pink print:!text-dark print:!no-underline">
+            <p className="font-normal print:font-light!">
+              {displayName}
+              <br />
+              <a
+                href={`mailto:${displayEmail}`}
+                className="hover:underline text-pink print:!text-dark print:!no-underline print:font-light!"
+              >
                 {displayEmail}
-              </a><br />
+              </a>
+              <br />
               {displayPhone}
             </p>
           </div>
