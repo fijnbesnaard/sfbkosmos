@@ -1,0 +1,22 @@
+---
+title: USB Debugging Pixel 9 Pro on chrome
+language: nl
+enableCoverPage: false
+coverDate: 2026-05-02
+coverPlace: Amsterdam
+coverName: Niels Hartog
+coverEmail: niels@fijnbesnaard.nl
+coverPhone: 06 4546 2919
+showToc: false
+tocMinLevel: 2
+tocMaxLevel: 3
+tags: []
+isAI: false
+---
+Pixel should show up in `chrome://inspect/#devices` with a list of all open Chrome tabs or WebViews. Just hit **"inspect"** under the tab you want to debug, and you'll get the full DevTools window.\
+\
+\### ADK Platform Tools\
+
+`/Users/fijnbesnaard/Library/CloudStorage/GoogleDrive-niels@fijnbesnaard.nl/My Drive/studio-fijnbesnaard/dev/adk-platform-tools`\
+
+Quick tip: Since you have the platform tools now, if it ever hangs again, you can just run `./adb kill-server` followed by `./adb devices` to reset the connection without having to toggle settings on the phone.
