@@ -81,8 +81,8 @@ export default function Navigation() {
       >
         <div className="p-8 pt-24 h-full flex flex-col">
           <div className="mb-6">
-            <h2 className="text-4xl font-heading font-bold text-dark dark:text-light tracking-tight leading-none uppercase">
-              SFB Kosmos
+            <h2 className="text-4xl font-heading font-bold text-dark dark:text-light tracking-tight leading-none ">
+              sfb kosmos
             </h2>
           </div>
 
@@ -115,8 +115,10 @@ export default function Navigation() {
               <path d="m21 21-4.35-4.35" />
             </svg>
             <span className="text-sm font-body flex-1 text-left">Search</span>
-            <kbd className="text-[9px] px-1.5 py-0.5 rounded border border-dark/20 dark:border-light/20
-                            text-dark/30 dark:text-light/30 font-mono tracking-wide">
+            <kbd
+              className="text-[9px] px-1.5 py-0.5 rounded border border-dark/20 dark:border-light/20
+                            text-dark/30 dark:text-light/30 font-mono tracking-wide"
+            >
               ⌘K
             </kbd>
           </button>
@@ -127,18 +129,13 @@ export default function Navigation() {
                 <Link
                   href={link.href}
                   onClick={closeMenu}
-                  className={`group flex items-center justify-between text-2xl font-heading uppercase py-2.5 px-4 rounded-xl transition-all duration-200 ${
+                  className={`group flex items-center justify-between text-lg font-body py-2.5 px-4 rounded-xl transition-all duration-200 ${
                     pathname === link.href
-                      ? "bg-blue/10 text-blue font-bold translate-x-1"
-                      : "text-dark/60 dark:text-light/60 hover:text-dark dark:hover:text-light hover:bg-dark/5 dark:hover:bg-light/5 hover:translate-x-1"
+                      ? "bg-pink/10 text-pink translate-x-1"
+                      : "text-dark/75 dark:text-light/60 font-light hover:text-dark dark:hover:text-light hover:bg-dark/5 dark:hover:bg-light/5 hover:translate-x-1"
                   }`}
                 >
-                  <span className="relative">
-                    {link.label}
-                    {pathname === link.href && (
-                      <span className="absolute -left-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue rounded-full" />
-                    )}
-                  </span>
+                  <span className="relative">{link.label}</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

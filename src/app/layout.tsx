@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import {
+  compacta,
+  inter,
+  cinzel,
+  atkinson,
+  atkinsonMono,
+  cormorant,
+  lato,
+  archivo,
+} from "./fonts";
 import "./globals.css";
-import { compacta, inter } from "./fonts";
 
 export const metadata: Metadata = {
   title: "SFB Kosmos",
@@ -18,7 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${compacta.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${compacta.variable} ${inter.variable} ${cinzel.variable} ${atkinson.variable} ${atkinsonMono.variable} ${cormorant.variable} ${lato.variable} ${archivo.variable}`}
+    >
       <body className="antialiased bg-light text-dark dark:bg-dark dark:text-light transition-colors duration-300">
         <Navigation />
         <ThemeSwitcher />

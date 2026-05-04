@@ -1,0 +1,22 @@
+---
+title: Security Headers for all websites
+language: nl
+enableCoverPage: false
+coverPlace: Amsterdam
+coverName: Niels Hartog
+coverEmail: niels@fijnbesnaard.nl
+coverPhone: 06 4546 2919
+showToc: false
+tocMinLevel: 2
+tocMaxLevel: 3
+tags: []
+isAI: false
+---
+Good baseline hygiene for any website. Even if a site has no login or sensitive functionality, `X-Frame-Options: SAMEORIGIN` is a one-liner with no downsides — unless you explicitly need your site to be embeddable in iframes on other domains (a widget, an embedded map, etc.), in which case you'd use `frame-ancestors` to whitelist specific origins instead of using `'self'`.
+
+```php
+add_action( 'send_headers', function() {
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( "Content-Security-Policy: frame-ancestors 'self'" );
+} );
+```

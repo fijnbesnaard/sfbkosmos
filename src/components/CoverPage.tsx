@@ -33,7 +33,7 @@ export function CoverPage({
   return (
     <div className="cover-page m-0 p-0 page-break-after">
       <div className="pt-8 print:pt-16 mb-8">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl print:!text-3xl font-bold mb-8 text-dark dark:text-light uppercase tracking-tight print:!leading-[1.1] leading-tight max-w-4xl">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl print:!text-2xl mb-8 text-dark dark:text-light uppercase tracking-tight print:!leading-[1.1] leading-tight max-w-4xl">
           {displayTitle}
         </h1>
 
