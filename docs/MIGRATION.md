@@ -12,20 +12,23 @@ gh repo clone fijnbesnaard/sfbkosmos
 
 ## 2. Restore Environment Variables
 
-The `.env.local` file is not on GitHub. You need to create it in the root folder and paste the following configuration:
+The `.env.local` file is not on GitHub (it's git-ignored). Create it in the root folder with this structure — pull the actual values from your password manager, never from this file:
 
 ```bash
 # The name of your repo
 NEXT_PUBLIC_KEYSTATIC_REPO="fijnbesnaard/sfbkosmos"
 
-# From the GitHub App settings
+# From the GitHub App settings (Settings > Developer settings > GitHub Apps > sfbkosmos)
 NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG="sfbkosmos"
-KEYSTATIC_GITHUB_CLIENT_ID="Iv23litis0Y0rCEgpeKt"
-KEYSTATIC_GITHUB_CLIENT_SECRET="***REMOVED-CLIENT-SECRET***"
+KEYSTATIC_GITHUB_CLIENT_ID="<app client id>"
+KEYSTATIC_GITHUB_CLIENT_SECRET="<app client secret>"
 
-# Internal Keystatic Secret
-KEYSTATIC_SECRET="***REMOVED-KEYSTATIC-SECRET***"
+# Internal Keystatic Secret — generate with: openssl rand -hex 16
+KEYSTATIC_SECRET="<random hex string>"
 ```
+
+> [!WARNING]
+> Never paste real secret values into this file or any other file tracked by git — this repo is public.
 
 ## 3. Install Dependencies
 
